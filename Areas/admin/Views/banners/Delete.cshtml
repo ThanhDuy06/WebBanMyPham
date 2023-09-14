@@ -1,0 +1,121 @@
+﻿@model WebBanMyPham.Models.banner
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Areas/admin/Views/Shared/_MyLayout.cshtml";
+}
+
+@section _Header {
+    <link href="@Url.Content("~/Content/bootstrap.css")" rel="stylesheet" type="text/css" />
+}
+<div class="container-fluid">
+
+    <!-- Page Heading -->
+    <h1>Bạn có muốn xóa slide này không?</h1>
+
+    <!-- Content Row -->
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-red">
+                <!-- /.panel-heading -->
+                <div class="panel-body">
+                    <dl class="dl-horizontal">
+                        <dt>
+                            Tên
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.name)
+                        </dd>
+
+                        <dt>
+                            Hình ảnh
+                        </dt>
+
+                        <dd>
+                            <img src="~/Content/upload/img/slider/@Model.url" width="200px" />
+                        </dd>
+
+                        <dt>
+                            Nội dung 1
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.detail1)
+                        </dd>
+
+                        <dt>
+                            Nội dung 2
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.detail2)
+                        </dd>
+
+                        <dt>
+                            Nội dung 3
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.detail3)
+                        </dd>
+
+                        <dt>
+                            Liên kết
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.link)
+                        </dd>
+
+                        <dt>
+                            Meta
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.meta)
+                        </dd>
+
+                        <dt>
+                            Hiển thị
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.hide)
+                        </dd>
+
+                        <dt>
+                            Vị trí
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.order)
+                        </dd>
+
+                        <dt>
+                            Ngày đăng
+                        </dt>
+
+                        <dd>
+                            @Html.DisplayFor(model => model.datebegin)
+                        </dd>
+
+
+                    </dl>
+
+
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+
+                        <div class="form-actions no-color">
+                            <input type="submit" value="Xóa" class="btn btn-danger" /> |
+                            @Html.ActionLink("Quay lại", "Index", "", new { @class = "btn btn-success" })
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

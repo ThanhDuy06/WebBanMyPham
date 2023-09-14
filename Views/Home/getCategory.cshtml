@@ -1,0 +1,8 @@
+﻿@model List<WebBanMyPham.Models.category>
+
+@foreach (var i in Model)
+{
+        <div class="tab-item">
+            <h3><a href="/@ViewBag.meta/@i.meta/">@i.name</a></h3>
+        </div>
+}

@@ -1,0 +1,18 @@
+﻿@model IEnumerable<WebBanMyPham.Models.news>
+
+@foreach (var i in Model)
+{
+        <a href="@i.link/" class="news">
+
+            <div class="news__img">
+                <img src="~/Content/upload/img/news/@i.img" alt="">
+            </div>
+            <div class="news__body">
+                <h3 class="news__body-title">@i.name</h3>
+                <div class="new__body-date">@i.datebegin</div>
+                <p class="news__description">
+                    @i.description
+                </p>
+            </div>
+        </a>
+}

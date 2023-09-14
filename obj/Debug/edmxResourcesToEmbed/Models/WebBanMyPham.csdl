@@ -1,0 +1,328 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="WebBanMyPhamModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="menu">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="link" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="meta" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="hide" Type="Boolean" />
+    <Property Name="order" Type="Int32" />
+    <Property Name="datebegin" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="menu_sanpham" Relationship="WebBanMyPhamModel.fk_htk_id" FromRole="menu" ToRole="menu_sanpham" />
+  </EntityType>
+  <EntityType Name="news">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="img" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="link" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="detail" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="meta" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="hide" Type="Boolean" />
+    <Property Name="order" Type="Int32" />
+    <Property Name="datebegin" Type="DateTime" Precision="0" />
+  </EntityType>
+  <EntityContainer Name="WebBanMyPhamEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="menus" EntityType="Self.menu" />
+    <EntitySet Name="news" EntityType="Self.news" />
+    <EntitySet Name="menu_sanpham" EntityType="WebBanMyPhamModel.menu_sanpham" />
+    <AssociationSet Name="fk_htk_id" Association="WebBanMyPhamModel.fk_htk_id">
+      <End Role="menu" EntitySet="menus" />
+      <End Role="menu_sanpham" EntitySet="menu_sanpham" />
+    </AssociationSet>
+    <EntitySet Name="menu_footer" EntityType="WebBanMyPhamModel.menu_footer" />
+    <EntitySet Name="footer_htkh" EntityType="WebBanMyPhamModel.footer_htkh" />
+    <EntitySet Name="footer_lienhe" EntityType="WebBanMyPhamModel.footer_lienhe" />
+    <EntitySet Name="footer_lienhe2" EntityType="WebBanMyPhamModel.footer_lienhe2" />
+    <EntitySet Name="banners" EntityType="WebBanMyPhamModel.banner" />
+    <EntitySet Name="categories" EntityType="WebBanMyPhamModel.category" />
+    <EntitySet Name="blocks" EntityType="WebBanMyPhamModel.block" />
+    <EntitySet Name="category_product" EntityType="WebBanMyPhamModel.category_product" />
+    <EntitySet Name="pruduct_trangdiem" EntityType="WebBanMyPhamModel.pruduct_trangdiem" />
+    <AssociationSet Name="FK__category___categ__7F4BDEC0" Association="WebBanMyPhamModel.FK__category___categ__7F4BDEC0">
+      <End Role="category" EntitySet="categories" />
+      <End Role="category_product" EntitySet="category_product" />
+    </AssociationSet>
+    <AssociationSet Name="FK__pruduct_t__id_ca__06ED0088" Association="WebBanMyPhamModel.FK__pruduct_t__id_ca__06ED0088">
+      <End Role="category" EntitySet="categories" />
+      <End Role="pruduct_trangdiem" EntitySet="pruduct_trangdiem" />
+    </AssociationSet>
+    <EntitySet Name="products" EntityType="WebBanMyPhamModel.product" />
+    <AssociationSet Name="FK__product__id_cate__07E124C1" Association="WebBanMyPhamModel.FK__product__id_cate__07E124C1">
+      <End Role="category" EntitySet="categories" />
+      <End Role="product" EntitySet="products" />
+    </AssociationSet>
+    <AssociationSet Name="FK__category___produ__7E57BA87" Association="WebBanMyPhamModel.FK__category___produ__7E57BA87">
+      <End Role="product" EntitySet="products" />
+      <End Role="category_product" EntitySet="category_product" />
+    </AssociationSet>
+    <EntitySet Name="Users" EntityType="WebBanMyPhamModel.User" />
+    <EntitySet Name="Orders" EntityType="WebBanMyPhamModel.Order" />
+    <EntitySet Name="OrderDetails" EntityType="WebBanMyPhamModel.OrderDetail" />
+  </EntityContainer>
+  <EntityType Name="menu_sanpham">
+    <Key>
+      <PropertyRef Name="id_menusanpham" />
+    </Key>
+    <Property Name="id_menusanpham" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="link" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="meta" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="hide" Type="Boolean" />
+    <Property Name="order" Type="Int32" />
+    <Property Name="datebegin" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="menu" Relationship="WebBanMyPhamModel.fk_htk_id" FromRole="menu_sanpham" ToRole="menu" />
+  </EntityType>
+  <Association Name="fk_htk_id">
+    <End Type="WebBanMyPhamModel.menu" Role="menu" Multiplicity="1" />
+    <End Type="WebBanMyPhamModel.menu_sanpham" Role="menu_sanpham" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="menu">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="menu_sanpham">
+        <PropertyRef Name="id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="menu_footer">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="link" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="meta" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="hide" Type="Boolean" />
+    <Property Name="order" Type="Int32" />
+    <Property Name="datebegin" Type="DateTime" Precision="0" />
+  </EntityType>
+  <EntityType Name="footer_htkh">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="link" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="meta" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="hide" Type="Boolean" />
+    <Property Name="order" Type="Int32" />
+    <Property Name="datebegin" Type="DateTime" Precision="0" />
+  </EntityType>
+  <EntityType Name="footer_lienhe">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="link" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="meta" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="hide" Type="Boolean" />
+    <Property Name="order" Type="Int32" />
+    <Property Name="datebegin" Type="DateTime" Precision="0" />
+    <Property Name="icon" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="footer_lienhe2">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="icon" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="link" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="meta" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="hide" Type="Boolean" />
+    <Property Name="order" Type="Int32" />
+    <Property Name="datebegin" Type="DateTime" Precision="0" />
+  </EntityType>
+  <EntityType Name="banner">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="url" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="detail1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="detail2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="link" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="meta" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="hide" Type="Boolean" />
+    <Property Name="order" Type="Int32" />
+    <Property Name="datebegin" Type="DateTime" Precision="0" />
+    <Property Name="detail3" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="category">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="link" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="meta" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="hide" Type="Boolean" />
+    <Property Name="order" Type="Int32" />
+    <Property Name="datebegin" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="category_product" Relationship="WebBanMyPhamModel.FK__category___categ__7F4BDEC0" FromRole="category" ToRole="category_product" />
+    <NavigationProperty Name="pruduct_trangdiem" Relationship="WebBanMyPhamModel.FK__pruduct_t__id_ca__06ED0088" FromRole="category" ToRole="pruduct_trangdiem" />
+    <NavigationProperty Name="products" Relationship="WebBanMyPhamModel.FK__product__id_cate__07E124C1" FromRole="category" ToRole="product" />
+  </EntityType>
+  <EntityType Name="block">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="link" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="meta" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="hide" Type="Boolean" />
+    <Property Name="order" Type="Int32" />
+    <Property Name="datebegin" Type="DateTime" Precision="0" />
+  </EntityType>
+  <EntityType Name="category_product">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="product_id" Type="Int32" />
+    <Property Name="category_id" Type="Int32" />
+    <Property Name="link" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="meta" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="hide" Type="Boolean" />
+    <Property Name="order" Type="Int32" />
+    <NavigationProperty Name="category" Relationship="WebBanMyPhamModel.FK__category___categ__7F4BDEC0" FromRole="category_product" ToRole="category" />
+    <NavigationProperty Name="product" Relationship="WebBanMyPhamModel.FK__category___produ__7E57BA87" FromRole="category_product" ToRole="product" />
+  </EntityType>
+  <EntityType Name="pruduct_trangdiem">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_category" Type="Int32" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="price" Type="Int32" />
+    <Property Name="detail" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="img" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="link" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="meta" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="hide" Type="Boolean" />
+    <Property Name="order" Type="Int32" />
+    <Property Name="date_begin" Type="DateTime" Precision="0" />
+    <Property Name="date_update" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="category" Relationship="WebBanMyPhamModel.FK__pruduct_t__id_ca__06ED0088" FromRole="pruduct_trangdiem" ToRole="category" />
+  </EntityType>
+  <Association Name="FK__category___categ__7F4BDEC0">
+    <End Type="WebBanMyPhamModel.category" Role="category" Multiplicity="0..1" />
+    <End Type="WebBanMyPhamModel.category_product" Role="category_product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="category">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="category_product">
+        <PropertyRef Name="category_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__pruduct_t__id_ca__06ED0088">
+    <End Type="WebBanMyPhamModel.category" Role="category" Multiplicity="0..1" />
+    <End Type="WebBanMyPhamModel.pruduct_trangdiem" Role="pruduct_trangdiem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="category">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="pruduct_trangdiem">
+        <PropertyRef Name="id_category" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="product">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="price" Type="Int32" />
+    <Property Name="detail" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="img" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="link" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="meta" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="hide" Type="Boolean" />
+    <Property Name="order" Type="Int32" />
+    <Property Name="date_begin" Type="DateTime" Precision="0" />
+    <Property Name="date_update" Type="DateTime" Precision="0" />
+    <Property Name="id_category" Type="Int32" />
+    <NavigationProperty Name="category" Relationship="WebBanMyPhamModel.FK__product__id_cate__07E124C1" FromRole="product" ToRole="category" />
+    <NavigationProperty Name="category_product" Relationship="WebBanMyPhamModel.FK__category___produ__7E57BA87" FromRole="product" ToRole="category_product" />
+  </EntityType>
+  <Association Name="FK__product__id_cate__07E124C1">
+    <End Type="WebBanMyPhamModel.category" Role="category" Multiplicity="0..1" />
+    <End Type="WebBanMyPhamModel.product" Role="product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="category">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="product">
+        <PropertyRef Name="id_category" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__category___produ__7E57BA87">
+    <End Type="WebBanMyPhamModel.product" Role="product" Multiplicity="0..1" />
+    <End Type="WebBanMyPhamModel.category_product" Role="category_product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="product">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="category_product">
+        <PropertyRef Name="product_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="FullName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Phone" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="Address" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Image" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Status" Type="Boolean" />
+    <Property Name="CreatedBy" Type="Int32" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedBy" Type="Int32" />
+    <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="Order">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="CustomerID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ShipName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ShipMobile" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ShipAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ShipEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Status" Type="Int32" />
+  </EntityType>
+  <EntityType Name="OrderDetail">
+    <Key>
+      <PropertyRef Name="ProductID" />
+      <PropertyRef Name="OrderID" />
+    </Key>
+    <Property Name="ProductID" Type="Int64" Nullable="false" />
+    <Property Name="OrderID" Type="Int64" Nullable="false" />
+    <Property Name="Quantity" Type="Int32" />
+    <Property Name="Price" Type="Decimal" Precision="18" Scale="0" />
+  </EntityType>
+</Schema>

@@ -1,0 +1,9 @@
+﻿@model IEnumerable<WebBanMyPham.Models.menu>
+@foreach (var i in Model)
+{
+    <li class="header__nav-item">
+        <a href="@i.meta" class="header__nav-link">@i.name</a>
+    </li>
+}
+
+

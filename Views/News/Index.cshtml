@@ -1,0 +1,44 @@
+﻿@model List<WebBanMyPham.Models.news>
+
+@{
+    ViewBag.Title = "Tin tức";
+    Layout = "~/Views/Shared/_MyLayout.cshtml";
+}
+@section Styles {
+    <link href="@Url.Content("~/assets/css/new.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/assets/owlCarousel/assets/owl.theme.default.min.css")" rel="stylesheet" type="text/css" />
+
+}
+    <div class="grid wide">
+        <div class="main__taskbar">
+            <div class="main__breadcrumb">
+                @*                <div class="breadcrumb__item">
+                        <a href="#" class="breadcrumb__link">Trang chủ</a>
+                    </div>*@
+                <div class="breadcrumb__item">
+                    <a href="#" class="breadcrumb__link">Danh sách tin tức</a>
+                </div>
+            </div>
+        </div>
+        @foreach (var i in Model)
+        {
+            <div class="list-new">
+                <div href="@i.link" class="new-item">
+                    <a href="@i.link" class="new-item__img">
+                        <img src="~/Content/upload/img/news/@i.img" alt="">
+                    </a>
+                    <div class="new-item__body">
+                        <a href="@i.link" class="new-item__title">
+                            @i.name
+                        </a>
+                        <p class="new-item__time"> Ngày đăng: @i.datebegin</p>
+                        <p class="new-item__description">
+                            @i.description
+                        </p>
+                        <a href="@i.link" class="btn btn--default">Xem thêm</a>
+                    </div>
+                </div>
+            </div>
+        }
+
+    </div>

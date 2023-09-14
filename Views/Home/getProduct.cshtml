@@ -1,0 +1,29 @@
+﻿@model List<WebBanMyPham.Models.product>
+
+@foreach (var i in Model)
+{
+    <div class="col l-2 m-4 s-6">
+        <div class="product">
+            <div class="product__avt" style="background-image: url(/Content/upload/img/product/@i.img);">
+            </div>
+            <div class="product__info">
+                <h3 class="product__name">@i.name</h3>
+                <div class="product__price">
+@*                    <div class="price__old">
+                        300.000 đ
+                    </div>*@
+                    <div class="price__new">@i.price <span class="price__unit">đ</span></div>
+                </div>
+@*                <div class="product__sale">
+                    <span class="product__sale-percent">24%%</span>
+                    <span class="product__sale-text">Giảm</span>
+                </div>*@
+            </div>
+            <a href="/@ViewBag.meta/@i.meta/@i.id" class="viewDetail">Xem chi tiết</a>
+            <a href="cart.html" class="addToCart">Thêm vào giỏ</a>
+        </div>
+    </div>
+}
+
+
+

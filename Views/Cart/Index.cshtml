@@ -1,0 +1,119 @@
+﻿@model List<WebBanMyPham.Models.CartItem>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_MyLayout.cshtml";
+    double TotalMoney = 0;
+}
+@section Styles {
+    <link href="@Url.Content("~/assets/css/cart.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/assets/owlCarousel/assets/owl.theme.default.min.css")" rel="stylesheet" type="text/css" />
+
+}
+@section jsFooter {
+    <script src="/assets/js/controller/cartController.js"></script>
+}
+<div class="main">
+    <div class="grid wide">
+        <h3 class="main__notify">
+            <!--<div class="main__notify-icon">
+                <i class="fas fa-check"></i>-->
+                <!-- <i class="fas fa-times"></i> -->
+            <!--</div>
+            <div class="main__notify-text">Giỏ hàng đã được cập nhật.</div>-->
+        </h3>
+        @if (Model.Count > 0)
+        {
+            <div class="row">
+                <div class="col l-8 m-12 s-12">
+                    <div class="main__cart">
+                        <div class="row title">
+                            <div class="col l-1 m-1 s-0">Chọn</div>
+                            <div class="col l-4 m-4 s-8">Sản phẩm</div>
+                            <div class="col l-2 m-2 s-0">Giá</div>
+                            <div class="col l-2 m-2 s-0">Số lượng</div>
+                            <div class="col l-2 m-2 s-4">Tổng</div>
+                            <div class="col l-1 m-1 s-0">Xóa</div>
+                        </div>
+                        @foreach (var item in Model)
+                        {
+                            double total = Convert.ToDouble(item.Product.price * item.Quantity);
+                            TotalMoney += total;
+                            <div class="row item">
+                                <div class="col l-1 m-1 s-0">
+                                    <input type="checkbox" name="a">
+                                </div>
+                                <div class="col l-4 m-4 s-8">
+                                    <div class="main__cart-product">
+                                        <img src="~/Content/upload/img/product/@item.Product.img" width="100" alt="">
+                                        <div class="name">@item.Product.name</div>
+                                    </div>
+                                </div>
+                                <div class="col l-2 m-2 s-0">
+                                    <div class="main__cart-price">@item.Product.price.GetValueOrDefault(0).ToString("N0") đ</div>
+                                </div>
+                                <div class="col l-2 m-2 s-0">
+                                    <div class="buttons_added">
+                                        <input class="minus is-form" type="button" value="-" onclick="minusProduct()">
+                                        <input aria-label="quantity" class="input-qty" max="10" min="1" name="" type="number" data-id="@item.Product.id" value="@item.Quantity">
+                                        <input class="plus is-form" type="button" value="+" onclick="plusProduct()">
+                                    </div>
+                                </div>
+                                <div class="col l-2 m-2 s-4">
+                                    <div class="main__cart-price">@total.ToString("N0") đ</div>
+                                </div>
+                                <div class="col l-1 m-1 s-0">
+                                    <span class="main__cart-icon">
+                                        <i href="#" data-id="@item.Product.id" id="btn-delete" class="far fa-times-circle "></i>
+                                    </span>
+                                </div>
+                            </div>
+                        }
+                        <button id="btnContinue" class="btn btn--default">Tiếp tục mua hàng</button>
+                        <button id="btnUpdate" class="btn btn--default">Cập nhật giỏ hàng</button>
+                        <button id="btnDeleteAll" class="btn btn--default">Xóa giỏ hàng</button>
+                    </div>
+                </div>
+                <div class="col l-4 m-12 s-12">
+                    <div class="main__pay">
+                        <div class="main__pay-title">Tổng số lượng</div>
+@*                        <div class="pay-info">
+                            <div class="main__pay-text">
+                                Tổng phụ
+                            </div>
+                            <div class="main__pay-price">
+                                1,120,000 ₫
+                            </div>
+                        </div>*@
+                        <div class="pay-info">
+                            <div class="main__pay-text">
+                                Giao hàng
+                            </div>
+                            <div class="main__pay-text">
+                                Giao hàng miễn phí
+                            </div>
+
+                        </div>
+                            <div class="pay-info">
+                                <div class="main__pay-text">
+                                    Tổng thành tiền
+                                </div>
+                                <div class="main__pay-price">
+                                     @TotalMoney.ToString("N0") ₫
+                                </div>
+                            </div>
+
+
+                        <button id="btnPayment" class="btn btn--default orange">Tiến hành thanh toán</button>
+                        <div class="main__pay-title">Phiếu ưu đãi</div>
+                        <input type="text" class="form-control">
+                        <div class="btn btn--default">Áp dụng</div>
+                    </div>
+                </div>
+            </div>
+        }
+        else
+        {
+            <div class="main__notify-text">Chưa có sản phẩm nào trong giỏ hàng</div>    
+        }
+    </div>
+</div>

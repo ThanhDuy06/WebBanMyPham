@@ -1,0 +1,61 @@
+﻿@using WebBanMyPham.Help
+@model WebBanMyPham.Models.category
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/admin/Views/Shared/_MyLayout.cshtml";
+}
+@section _Header {
+    <link href="@Url.Content("~/Areas/admin/vendor/datatables/dataTables.bootstrap4.min.css")" rel="stylesheet" type="text/css" />
+}
+
+<div class="container-fluid">
+
+    <!-- Page Heading -->
+    <h1>Danh sách sản phẩm</h1>
+    <p>
+        @Html.NoEncodeActionLink("<span class='glyphicon glyphicon-plus'></span> Thêm mới", "Create", "Create", "products", routeValues: new { }, htmlAttributes: new { data_modal = "", @class = "btn btn-primary" })
+    </p>
+
+
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+        @*        <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
+            </div>*@
+        <div class="card-body">
+            <div class="bs-example" style="text-align:right; padding-bottom:10px;">
+                <div class="btn-group">
+                    @Html.DropDownListFor(model => model.id, (SelectList)ViewBag.Category, " --- Tất cả sản phẩm --- ",
+                                                                    new { @class = "form-control", @id = "Category" })
+                </div>
+            </div>
+            <div id="getProduct"></div>
+        </div>
+    </div>
+</div>
+@section _Footer
+{
+    <script>
+        $(document).ready(function () {
+            function getProduct() {
+                var CategoryId = $('#Category').val();
+                $.ajax({
+                    url: '@Url.Action("getProduct", "products")',
+                    type: "GET",
+                    data: { id: CategoryId },
+                    success: function (data) {
+                        $("#getProduct").html(data);
+                    },
+                    error: function (data) {
+                        alert("something went wrong.");
+                    }
+                });
+            }
+            getProduct();
+            $("#Category").change(function () {
+                getProduct();
+            })
+        });
+    </script>
+}

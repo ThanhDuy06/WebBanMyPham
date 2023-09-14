@@ -1,0 +1,150 @@
+﻿
+@{
+    ViewBag.Title = "Home Page";
+    Layout = "~/Views/Shared/_MyLayout.cshtml";
+    var listNewProducts = (List<WebBanMyPham.Models.product>)ViewBag.NewProducts;
+}
+@section Styles {
+    <link href="@Url.Content("~/assets/css/home.css")" rel="stylesheet" type="text/css" />
+
+}
+<div class="main">
+    <!-- Slider -->
+    <div class="main__slice">
+        <div class="slider">
+            @{Html.RenderAction("getBanner", "Home");}
+        </div>
+        <!-- controls  -->
+        <div class="controls">
+            <div class="prev">
+                <i class="fas fa-chevron-left"></i>
+            </div>
+            <div class="next">
+                <i class="fas fa-chevron-right"></i>
+            </div>
+        </div>
+        <!-- indicators -->
+        <div class="indicator">
+        </div>
+    </div>
+    <!--Product Category -->
+    <div class="main__tabnine">
+        <div class="grid wide">
+            <!-- Tab items -->
+            <div class="tabs">
+                @{Html.RenderAction("getCategory", "Home");}
+            </div>
+            <!-- Tab content -->
+            <div class="tab-content">
+                <div class="tab-pane active">
+                    <h3 class="category__heading ">Sản Phẩm Mới</h3>
+                    <div class="row">
+                        @foreach (var item in listNewProducts)
+                        {
+                            var url = "/san-pham/" + item.meta + "/" + item.id;
+                            <div class="col l-2 m-4 s-6">
+                                <div class="product">
+                                    <div class="product__avt" style="background-image: url(/Content/upload/img/product/@item.img);">
+                                    </div>
+                                    <div class="product__info">
+                                        <h3 class="product__name">@item.name</h3>
+                                        <div class="product__price">
+                                            <div class="price__old">
+                                                300.000 đ
+                                            </div>
+                                            <div class="price__new">@item.price.GetValueOrDefault(0).ToString("N0") <span class="price__unit">đ</span></div>
+                                        </div>
+                                        <div class="product__sale">
+                                            <span class="product__sale-percent">24%%</span>
+                                            <span class="product__sale-text">Giảm</span>
+                                        </div>
+                                    </div>
+                                    <a href="@url" class="viewDetail">Xem chi tiết</a>
+                                    <a href="/them-gio-hang?productId=@item.id&quantity=1" class="addToCart">Thêm vào giỏ</a>
+                                </div>
+                            </div>
+
+                        }
+
+                    </div>
+                </div>
+            </div>
+            <!-- HightLight  -->
+            <div class="main__frame ">
+                <div class="grid wide ">
+                    <h3 class="category__heading ">Tất Cả Sản Phẩm</h3>
+                    <div class="owl-carousel hight owl-theme ">
+                        @{Html.RenderAction("getProduct_index", "Product"); }
+                    </div>
+                </div>
+            </div>
+            <!-- Sales Policy -->
+            <div class="main__policy">
+                <div class="row">
+                    <div class="col l-3 m-6">
+                        <div class="policy bg-1">
+                            <img src="./assets/img/policy/policy1.png" class="policy__img"></img>
+                            <div class="policy__info">
+                                <h3 class="policy__title">GIAO HÀNG MIỄN PHÍ</h3>
+                                <p class="policy__description">Cho đơn hàng từ 300K</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col l-3 m-6">
+                        <div class="policy bg-2">
+                            <img src="./assets/img/policy/policy2.png" class="policy__img"></img>
+                            <div class="policy__info">
+                                <h3 class="policy__title">ĐỔI TRẢ HÀNG</h3>
+                                <p class="policy__description">Trong 3 ngày đầu tiên</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col l-3 m-6">
+                        <div class="policy bg-1">
+                            <img src="./assets/img/policy/policy3.png" class="policy__img"></img>
+                            <div class="policy__info">
+                                <h3 class="policy__title">HÀNG CHÍNH HÃNG</h3>
+                                <p class="policy__description">Cam kết chất lượng</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col l-3 m-6">
+                        <div class="policy bg-2">
+                            <img src="./assets/img/policy/policy4.png" class="policy__img"></img>
+                            <div class="policy__info">
+                                <h3 class="policy__title">TƯ VẤN 24/24</h3>
+                                <p class="policy__description">Giải đáp mọi thắc mắc</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <!-- News -->
+            <div class="main__frame bg-3">
+                <div class="grid wide">
+                    <h3 class="category__title">Cometics</h3>
+                    <h3 class="category__heading">Tin Tức</h3>
+                    <div class="owl-carousel news owl-theme">
+                        @{Html.RenderAction("getNew", "Home");}
+                    </div>
+                </div>
+            </div>
+            @*    <div class="main__bands">
+            <div class="grid wide">
+                <div class="owl-carousel bands">
+                    <a href="listProduct.html" class="band__item" style="background-image: url(./assets/img/band/band1.png)"></a>
+                    <a href="listProduct.html" class="band__item" style="background-image: url(./assets/img/band/band2.png)"></a>
+                    <a href="listProduct.html" class="band__item" style="background-image: url(./assets/img/band/band3.png)"></a>
+                    <a href="listProduct.html" class="band__item" style="background-image: url(./assets/img/band/band4.png)"></a>
+                    <a href="listProduct.html" class="band__item" style="background-image: url(./assets/img/band/band5.png)"></a>
+                    <a href="listProduct.html" class="band__item" style="background-image: url(./assets/img/band/band6.png)"></a>
+                    <a href="listProduct.html" class="band__item" style="background-image: url(./assets/img/band/band7.png)"></a>
+                </div>
+            </div>
+        </div>*@
+
+        </div>
+        </div>
+    </div>
+</div>

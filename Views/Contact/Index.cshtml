@@ -1,0 +1,64 @@
+﻿@model List<WebBanMyPham.Models.footer_lienhe>
+
+@{
+    ViewBag.Title = "Contact";
+    Layout = "~/Views/Shared/_MyLayout.cshtml";
+}
+@section Styles {
+    <link href="@Url.Content("~/assets/css/contact.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/assets/owlCarousel/assets/owl.theme.default.min.css")" rel="stylesheet" type="text/css" />
+}
+
+    <div class="grid wide">
+        <div class="main__breadcrumb">
+@*            <div class="breadcrumb__item">
+                <a href="#" class="breadcrumb__link">Trang chủ</a>
+            </div>*@
+            <div class="breadcrumb__item">
+                <a href="#" class="breadcrumb__link">Liên hệ</a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col l-6 m-12 s-12">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d824.0863826052117!2d106.69952580328493!3d10.731586667540624!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x317528b2747a81a3%3A0x33c1813055acb613!2sTon%20Duc%20Thang%20University!5e0!3m2!1sen!2s!4v1681366973954!5m2!1sen!2s" width="100%"
+                        height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+            <div class="col l-6 m-12 s-12">
+                <div class="contact__wrap">
+                    <div class="contact__img">
+                        <img src="~/assets/logo.png" alt="">
+                    </div>
+                    <ul class="contact__info">
+                        @foreach (var i in Model)
+                        {
+                            <li>
+                                <a href="#" class="contact__link">
+                                    <i class="@i.icon"></i> @i.name
+                                </a>
+                            </li>
+                        }
+
+                    </ul>
+                </div>
+                <div class="about-us">
+                    <div class="about-us__heading">Liên hệ với chúng tôi</div>
+                    <div class="form__group">
+                        <div>
+                            <input type="text" value="Họ và tên">
+                        </div>
+                        <div>
+                            <input type="text" value="Email">
+                        </div>
+                        <div>
+                            <input type="text" value="Địa chỉ">
+                        </div>
+                        <div>
+                            <input type="text" value="Số điện thoại">
+                        </div>
+                    </div>
+                    <textarea name="" id="" cols="30" rows="5" placeholder="Lời nhắn"></textarea>
+                    <button type="submit" class="btn btn--default">Gửi</button>
+                </div>
+            </div>
+        </div>
+    </div>

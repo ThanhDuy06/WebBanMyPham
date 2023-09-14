@@ -1,0 +1,11 @@
+﻿@model IEnumerable<WebBanMyPham.Models.footer_lienhe>
+
+
+@foreach (var i in Model)
+{
+    <li class="footer__item">
+        <a href="#" class="footer__link">
+            <i class="@i.icon"></i>@i.name
+        </a>
+    </li>
+}

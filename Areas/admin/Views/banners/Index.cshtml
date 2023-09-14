@@ -1,0 +1,125 @@
+﻿@model IEnumerable<WebBanMyPham.Models.banner>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/admin/Views/Shared/_MyLayout.cshtml";
+}
+
+@section _Header {
+    <link href="@Url.Content("~/Areas/admin/vendor/datatables/dataTables.bootstrap4.min.css")" rel="stylesheet" type="text/css" />
+}
+
+<div class="container-fluid">
+
+    <!-- Page Heading -->
+    <h1>Danh sách slide</h1>
+    <p>
+        @Html.ActionLink("Thêm mới", "Create", "", new { @class = "btn btn-primary" })
+    </p>
+
+
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>
+                                STT
+                            </th>
+                            <th>
+                                Tên
+                            </th>
+                            <th>
+                                Hình ảnh
+                            </th>
+@*                            <th>
+                                @Html.DisplayNameFor(model => model.detail1)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.detail2)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.link)
+                            </th>*@
+                            <th>
+                                @Html.DisplayNameFor(model => model.meta)
+                            </th>
+                            <th>
+                                Hiển thị
+                            </th>
+@*                            <th>
+                                @Html.DisplayNameFor(model => model.order)
+                            </th>*@
+                            <th>
+                                Ngày đăng
+                            </th>
+@*                            <th>
+                                @Html.DisplayNameFor(model => model.detail3)
+                            </th>*@
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{var Number = 1; }
+
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.Raw(Number++)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.name)
+                                </td>
+                                <td>
+                                    <img src="~/Content/upload/img/slider/@item.url" width="300px" />
+                                    @Html.DisplayFor(modelItem => item.url)
+
+                                </td>
+@*                                <td>
+                                    @Html.DisplayFor(modelItem => item.detail1)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.detail2)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.link)
+                                </td>*@
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.meta)
+                                </td>
+                                <td>
+                                    @(item.hide.GetValueOrDefault(false) ? "Hiển thị" : "Ẩn")
+                                </td>
+@*                                <td>
+                                    @Html.DisplayFor(modelItem => item.order)
+                                </td>*@
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.datebegin)
+                                </td>
+@*                                <td>
+                                    @Html.DisplayFor(modelItem => item.detail3)
+                                </td>*@
+                                <td>
+                                    @Html.ActionLink("Sửa", "Edit", routeValues: new { id = item.id }, htmlAttributes: new { @class = "btn btn-success" })
+                                    @Html.ActionLink("Chi tiết", "Details", routeValues: new { id = item.id }, htmlAttributes: new { @class = "btn btn-primary" })
+                                    @Html.ActionLink("Xóa", "Delete", routeValues: new { id = item.id }, htmlAttributes: new { @class = "btn btn-danger" })
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+        $('#dataTable').DataTable({
+            responsive: true
+        });
+    });
+</script>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="4bf4fd11f568459aa6f6ccfc46d7d4db" Name="Diagram1" ZoomLevel="82">
+        <EntityTypeShape EntityType="WebBanMyPhamModel.menu" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebBanMyPhamModel.news" Width="1.5" PointX="3.25" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebBanMyPhamModel.menu_sanpham" Width="1.5" PointX="2.875" PointY="4.25" />
+        <AssociationConnector Association="WebBanMyPhamModel.fk_htk_id" />
+        <EntityTypeShape EntityType="WebBanMyPhamModel.menu_footer" Width="1.5" PointX="5.375" PointY="0.75" />
+        <EntityTypeShape EntityType="WebBanMyPhamModel.footer_htkh" Width="1.5" PointX="5.25" PointY="4.25" />
+        <EntityTypeShape EntityType="WebBanMyPhamModel.footer_lienhe" Width="1.5" PointX="7.375" PointY="0.75" />
+        <EntityTypeShape EntityType="WebBanMyPhamModel.footer_lienhe2" Width="1.5" PointX="0.75" PointY="7.75" />
+        <EntityTypeShape EntityType="WebBanMyPhamModel.banner" Width="1.5" PointX="3.125" PointY="7.625" />
+        <EntityTypeShape EntityType="WebBanMyPhamModel.category" Width="1.5" PointX="7.375" PointY="4.75" />
+        <EntityTypeShape EntityType="WebBanMyPhamModel.block" Width="1.5" PointX="5.375" PointY="7.75" />
+        <EntityTypeShape EntityType="WebBanMyPhamModel.category_product" Width="1.5" PointX="9.625" PointY="7" />
+        <EntityTypeShape EntityType="WebBanMyPhamModel.pruduct_trangdiem" Width="1.5" PointX="9.625" PointY="2.75" />
+        <AssociationConnector Association="WebBanMyPhamModel.FK__category___categ__7F4BDEC0" />
+        <AssociationConnector Association="WebBanMyPhamModel.FK__pruduct_t__id_ca__06ED0088" />
+        <EntityTypeShape EntityType="WebBanMyPhamModel.product" Width="1.5" PointX="9.625" PointY="11.375" />
+        <AssociationConnector Association="WebBanMyPhamModel.FK__product__id_cate__07E124C1" />
+        <AssociationConnector Association="WebBanMyPhamModel.FK__category___produ__7E57BA87" />
+        <EntityTypeShape EntityType="WebBanMyPhamModel.User" Width="1.5" PointX="0.75" PointY="11.75" />
+        <EntityTypeShape EntityType="WebBanMyPhamModel.Order" Width="1.5" PointX="3.375" PointY="11.75" />
+        <EntityTypeShape EntityType="WebBanMyPhamModel.OrderDetail" Width="1.5" PointX="5.375" PointY="11.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

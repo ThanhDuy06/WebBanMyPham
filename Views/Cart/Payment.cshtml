@@ -1,0 +1,73 @@
+﻿@model List<WebBanMyPham.Models.CartItem>
+
+@{
+    ViewBag.Title = "Payment";
+    Layout = "~/Views/Shared/_MyLayout.cshtml";
+    double TotalMoney = 0;
+}
+@section Styles {
+    <link href="@Url.Content("~/assets/css/pay.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/assets/owlCarousel/assets/owl.theme.default.min.css")" rel="stylesheet" type="text/css" />
+
+}
+<div class="grid wide">
+    <div class="row">
+        <div class="col l-7 m-12 s-12">
+            <div class="pay-information">
+                <div class="pay__heading">Thông tin thanh toán</div>
+                @using (Html.BeginForm("Payment", "Cart", FormMethod.Post))
+                {
+                    <div class="form-group">
+                        <label for="account" class="form-label">Họ Tên *</label>
+                        <input id="account" name="shipName" type="text" class="form-control">
+                        <span class="form-message"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="account" class="form-label">Địa chỉ *</label>
+                        <input id="account" name="address" type="text" class="form-control">
+                        <span class="form-message"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="account" class="form-label">Email *</label>
+                        <input id="account" name="email" type="text" class="form-control">
+                        <span class="form-message"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="account" class="form-label">Số điện thoại *</label>
+                        <input id="account" name="mobile" type="text" class="form-control">
+                        <span class="form-message"></span>
+                    </div>
+                    <button type="submit" class="btn btn--default">Gửi đơn hàng</button>
+                }
+            </div>
+        </div>
+
+        <div class="col l-5 m-12 s-12">
+            <div class="pay-order">
+                <div class="pay__heading">Đơn hàng của bạn</div>
+                @foreach (var item in Model)
+                {
+                    double total = Convert.ToDouble(item.Product.price * item.Quantity);
+                    TotalMoney += total;
+                    <div class="pay-info">
+                        <div class="main__pay-text">
+                            @item.Product.name
+                        </div>
+                        <div class="main__pay-price">
+                            @item.Quantity x @item.Product.price.GetValueOrDefault(0).ToString("N0")₫
+                        </div>
+                    </div>
+
+                }
+                <div class="pay-info">
+                    <div class="main__pay-text special">
+                        Tổng thành tiền
+                    </div>
+                    <div class="main__pay-price">
+                        @TotalMoney.ToString("N0")₫
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

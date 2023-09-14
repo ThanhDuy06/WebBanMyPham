@@ -1,0 +1,38 @@
+﻿@model List<WebBanMyPham.Models.CartItem>
+@{
+    double TotalMoney = 0;
+}
+<!-- Cart -->
+<div class="header__cart have" href="#">
+    <i class="fas fa-shopping-basket"></i>
+    <div class="header__cart-amount">
+        @Model.Count
+    </div>
+    <div class="header__cart-wrap">
+        <ul class="order__list">
+            @foreach (var item in Model)
+            {
+                double total = Convert.ToDouble(item.Product.price * item.Quantity);
+                TotalMoney += total;
+                <li class="item-order">
+                    <div class="order-wrap">
+                        <a href="product.html" class="order-img">
+                            <img src="~/Content/upload/img/product/@item.Product.img" alt="">
+                        </a>
+                        <div class="order-main">
+                            <a href="product.html" class="order-main-name">@item.Product.name</a>
+                            <div class="order-main-price">@item.Quantity x @item.Product.price.GetValueOrDefault(0).ToString("N0") ₫</div>
+                        </div>
+                        <a href="product.html" class="order-close"><i class="far fa-times-circle"></i></a>
+                    </div>
+                </li>
+
+            }
+        </ul>
+        <div class="total-money">Tổng cộng: @TotalMoney.ToString("N0") đ</div>
+        <a href="/gio-hang" class="btn btn--default cart-btn">Xem giỏ hàng</a>
+        <a href="/thanh-toan" class="btn btn--default cart-btn orange">Thanh toán</a>
+        <!-- norcart -->
+        <!-- <img class="header__cart-img-nocart" src="http://www.giaybinhduong.com/images/empty-cart.png" alt=""> -->
+    </div>
+</div>

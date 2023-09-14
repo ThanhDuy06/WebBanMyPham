@@ -1,0 +1,16 @@
+﻿@model IEnumerable<WebBanMyPham.Models.banner>
+
+@foreach (var i in Model)
+{
+        <div class="slide active" style="background-image:url(/Content/upload/img/slider/@i.url)">
+            <div class="container">
+                <div class="caption">
+                    <h1></h1>
+                    <p></p>
+@*                    <a href="listProduct.html" class="btn btn--default">Xem ngay</a>
+*@                </div>
+            </div>
+        </div>
+}
+
+

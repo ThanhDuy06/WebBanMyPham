@@ -1,0 +1,106 @@
+﻿@using WebBanMyPham.Help
+@model IEnumerable<WebBanMyPham.Models.product>
+
+<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+    <thead>
+        <tr>
+            <th>
+                STT
+            </th>
+            <th>
+                Tên
+            </th>
+            <th>
+                Giá
+            </th>
+            @*        <th>
+                @Html.DisplayNameFor(model => model.detail)
+            </th>
+            *@
+            <th>
+                Hình
+            </th>
+            @*        <th>
+                @Html.DisplayNameFor(model => model.link)
+            </th>*@
+            @*        <th>
+                @Html.DisplayNameFor(model => model.meta)
+            </th>*@
+            <th>
+                Hiển thị
+            </th>
+@*            <th>
+                Vị trí
+            </th>*@
+            <th>
+                Ngày post
+            </th>
+            @*        <th>
+                @Html.DisplayNameFor(model => model.date_update)
+            </th>*@
+            <th>
+                Loại sản phẩm
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @{var Number = 1; }
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.Raw(Number++)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.price)
+                </td>
+@*                <td>
+                    @Html.DisplayFor(modelItem => item.detail)
+                </td>*@
+                <td>
+                    <img src="~/Content/upload/img/product/@item.img" width="50px" />
+
+                </td>
+@*                <td>
+                    @Html.DisplayFor(modelItem => item.link)
+                </td>*@
+@*                <td>
+                    @Html.DisplayFor(modelItem => item.meta)
+                </td>*@
+                <td>
+                    @(item.hide.GetValueOrDefault(false) ? "Hiển thị" : "Ẩn")
+                </td>
+@*                <td>
+                    @Html.DisplayFor(modelItem => item.order)
+                </td>*@
+                <td>
+                    @Html.DisplayFor(modelItem => item.date_begin)
+                </td>
+@*                <td>
+                    @Html.DisplayFor(modelItem => item.date_update)
+                </td>*@
+                <td>
+                    @Html.DisplayFor(modelItem => item.category.name)
+                </td>
+                <td>
+                    @Html.ActionLink("Sửa", "Edit", routeValues: new { id = item.id }, htmlAttributes: new { @class = "btn btn-success" }) 
+                    @Html.ActionLink("Chi tiết", "Details", routeValues: new { id = item.id }, htmlAttributes: new { @class = "btn btn-primary" }) 
+                    @Html.ActionLink("Xóa", "Delete", routeValues: new { id = item.id }, htmlAttributes: new { @class = "btn btn-danger" })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<script>
+    $(document).ready(function () {
+        $('#dataTable').DataTable({
+            responsive: true
+        });
+    });
+</script>

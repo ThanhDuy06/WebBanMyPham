@@ -1,0 +1,8 @@
+﻿@model List<WebBanMyPham.Models.category>
+
+@foreach (var i in Model)
+{
+    <li class="footer__item">
+        <a href="/@ViewBag.meta/@i.meta/" class="footer__link">@i.name</a>
+    </li>
+}

@@ -1,0 +1,80 @@
+﻿
+@{
+    ViewBag.Title = Model.name;
+    Layout = "~/Views/Shared/_MyLayout.cshtml";
+}
+@section Styles {
+    <link href="@Url.Content("~/assets/css/product.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/assets/css/productSale.css")" rel="stylesheet" type="text/css" />
+}
+<div class="main">
+    <div class="grid wide">
+        <div class="main__taskbar">
+            <div class="main__breadcrumb">
+                <div class="breadcrumb__item">
+                    <a href="#" class="breadcrumb__link">
+                        <div class="tab-item">
+                            @Model.name
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="main__sort">
+                <h3 class="sort__title">
+                    Hiển thị kết quả theo
+                </h3>
+                <select class="sort__select">
+                    name="" id="">
+                    <option value="1">Thứ tự mặc định</option>
+                    <option value="2">Mức độ phổ biến</option>
+                    <option value="3">Điểm đánh giá</option>
+                    <option value="4">Mới cập nhật</option>
+                    <option value="5">Giá : Cao đến thấp</option>
+                    <option value="6">Giá Thấp đến cao</option>
+                </select>
+            </div>
+        </div>
+        <div class="productList">
+            <div class="listProduct">
+                <div class="row">
+                    @Html.Action("getProduct", "Home", new { id = Model.id })
+                </div>
+            </div>
+            <div class="pagination">
+                <ul class="pagination__list">
+                    <li class="pagination__item">
+                        <a href="listFilm.html" class="pagination__link">
+                            <i class="fas fa-chevron-left"></i>
+                        </a>
+                    </li>
+                    <li class="pagination__item active">
+                        <a href="listFilm.html" class="pagination__link">1</a>
+                    </li>
+                    <li class="pagination__item">
+                        <a href="listFilm.html" class="pagination__link">2</a>
+                    </li>
+                    <li class="pagination__item">
+                        <a href="listFilm.html" class="pagination__link">3</a>
+                    </li>
+                    <li class="pagination__item">
+                        <a href="listFilm.html" class="pagination__link">4</a>
+                    </li>
+                    <li class="pagination__item">
+                        <a href="listFilm.html" class="pagination__link">5</a>
+                    </li>
+                    <li class="pagination__item">
+                        <a href="listFilm.html" class="pagination__link">...</a>
+                    </li>
+                    <li class="pagination__item active">
+                        <a href="listFilm.html" class="pagination__link">14</a>
+                    </li>
+                    <li class="pagination__item">
+                        <a href="listFilm.html" class="pagination__link">
+                            <i class="fas fa-chevron-right"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
